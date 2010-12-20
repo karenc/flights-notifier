@@ -5,7 +5,7 @@ setup(
         version='0.0.0',
         author='Karen Chan',
         author_email='cee.wing@gmail.com',
-        description='A script to email you of information of all your flights',
+        description='A script to email you status of your flights',
         license='BSD',
         packages=find_packages(),
         entry_points={
