@@ -4,6 +4,12 @@ Flight Notifier
 Install
 -------
 
+system install in debian / ubuntu:
+
+::
+
+    sudo dpkg -i deb_dist/python-flights-notifier_0.0.0-1_all.deb
+
 system install as root:
 
 ::

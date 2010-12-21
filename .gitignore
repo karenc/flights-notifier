@@ -1,5 +1,6 @@
 /build/
 /dist/
+/deb_dist/
 *.egg-info
 *.sw[pon]
 *.pyc
