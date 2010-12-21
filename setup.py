@@ -11,6 +11,7 @@ setup(
         entry_points={
             'console_scripts': [
                 'flights-notifier = travel.scripts.flights_notifier:main',
+                'trains-notifier = travel.scripts.trains_notifier:main',
                 ],
             },
         )
