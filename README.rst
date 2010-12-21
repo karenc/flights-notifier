@@ -22,13 +22,13 @@ user install in ~/.local/bin/:
 
     python setup.py install --user
 
-Setup: flight-notifier.cfg
+Setup: flights-notifier.cfg
 --------------------------
 
 ::
 
-    [flight-notifier]
-    tempdir = /var/tmp/flight-notifier
+    [flights-notifier]
+    tempdir = /var/tmp/flights-notifier
 
     [smtp]
     server = smtp.gmail.com
@@ -40,7 +40,7 @@ Setup: flight-notifier.cfg
 
 Settings:
 
- * tempdir is a directory that flight-notifier can use to store data.
+ * tempdir is a directory that flights-notifier can use to store data.
 
 Airport plugins
 ---------------

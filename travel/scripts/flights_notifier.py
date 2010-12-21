@@ -3,10 +3,10 @@
 import ConfigParser
 import optparse
 import os
-import smtplib
 import sys
 
 import travel.airports
+import travel.notifiers.email
 
 def main():
     parser = optparse.OptionParser('Usage: %prog <airport> <flight_number>')
@@ -40,8 +40,8 @@ def main():
 
     tempdir = None
     old_status = None
-    if config and config.has_section('flight-notifier'):
-        tempdir = config.get('flight-notifier', 'tempdir')
+    if config and config.has_section('flights-notifier'):
+        tempdir = config.get('flights-notifier', 'tempdir')
         if not os.path.exists(tempdir):
             os.mkdir(tempdir)
         elif os.path.exists(os.path.join(tempdir, flight_number)):
@@ -51,26 +51,19 @@ def main():
     if (options.email and
             config and config.has_section('smtp') and
             status != old_status):
-        server = smtplib.SMTP(config.get('smtp', 'server'),
-                config.getint('smtp', 'port'))
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
-        server.login(config.get('smtp', 'login'),
-                config.get('smtp', 'password'))
         subject = 'Flight status: %s %s (%s)' % (
                 airport, flight_number, status)
-        for email in options.email.split(','):
-            server.sendmail(config.get('smtp', 'email'),
-                    email,
-                    'From: %s <%s>\n'
-                    'To: %s\n'
-                    'Subject: %s\n\n%s\n\n'
-                    '---\nSent from flights-notifier\n' % (
-                        config.get('smtp', 'name'),
-                        config.get('smtp', 'email'),
-                        email, subject, subject))
-        server.close()
+        message = '%s\n\n--\nSent from flights-notifier\n' % (
+                subject)
+        travel.notifiers.email.notify(
+                config.get('smtp', 'server'),
+                config.get('smtp', 'port'),
+                config.get('smtp', 'login'),
+                config.get('smtp', 'password'),
+                config.get('smtp', 'name'),
+                config.get('smtp', 'email'),
+                options.email,
+                subject, message)
 
         if tempdir:
             open(os.path.join(tempdir, flight_number), 'w').write(status)
