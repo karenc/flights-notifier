@@ -33,10 +33,10 @@ Setup: flight-notifier.cfg
     [smtp]
     server = smtp.gmail.com
     port = 587
-    login = cee.wing@gmail.com
+    login = asdf@gmail.com
     password = password
     name = Flight Notifier
-    email = cee.wing@gmail.com
+    email = asdf@gmail.com
 
 Settings:
 
@@ -50,12 +50,35 @@ Currently we only have:
  * Manchester
  * Amsterdam (Schiphol)
 
+Writing a new airport plugin
+----------------------------
+
+To write a new airport plugin for the flights notifier, create a python file in
+the airports/ directory with the airport name, e.g. travel/airports/hongkong.py.
+
+The new plugin will need to be imported in travel/airports/__init__.py:
+
+::
+
+    import hongkong
+
+in hongkong.py, you need define a function get_flight_info which takes a flight
+number and returns some information in form of a dict.  Currently, only
+"status" is looked at:
+
+::
+
+    def get_flight_info(flight_number):
+        return {
+            'status': 'Delayed',
+            }
+
 Command line usage
 ------------------
 
 ::
 
-    flight-notifier manchester AB1234 -e recipient1@gmail.com,recipient2@gmail.com -c ~/flights-notifier.cfg
+    flights-notifier manchester AB1234 -e recipient1@gmail.com,recipient2@gmail.com -c ~/flights-notifier.cfg
 
 Crontab
 -------
