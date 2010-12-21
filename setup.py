@@ -10,7 +10,7 @@ setup(
         packages=find_packages(),
         entry_points={
             'console_scripts': [
-                'flights-notifier = travel.scripts.notifier:main',
+                'flights-notifier = travel.scripts.flights_notifier:main',
                 ],
             },
         )
