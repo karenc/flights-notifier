@@ -1,2 +1,2 @@
-import plugins
+import airports
 import scripts

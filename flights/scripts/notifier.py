@@ -6,7 +6,7 @@ import os
 import smtplib
 import sys
 
-import flights.plugins
+import flights.airports
 
 def main():
     parser = optparse.OptionParser('Usage: %prog <airport> <flight_number>')
@@ -20,7 +20,7 @@ def main():
         sys.exit(1)
 
     airport = args[0]
-    plugin = getattr(flights.plugins, airport, None)
+    plugin = getattr(flights.airports, airport, None)
     flight_number = args[1]
     if not plugin:
         sys.stderr.write('Airport %s plugin is not found.\n' % airport)
