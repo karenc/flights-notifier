@@ -35,7 +35,7 @@ Setup: flights-notifier.cfg
     port = 587
     login = asdf@gmail.com
     password = password
-    name = Flight Notifier
+    name = Travel Notifier
     email = asdf@gmail.com
 
 Settings:
