@@ -1,5 +1,10 @@
-Flight Notifier
-===============
+Flights Notifier
+================
+
+Flights notifier can get the status of your flights and notify you the status.
+When flights are likely to be delayed or cancelled, this script will allow you
+to get the most up to date information easily so you can be more prepared for
+your journey.
 
 Install
 -------
@@ -90,3 +95,16 @@ Check flight AB1234 in Manchester every 5 minutes on 20-21 December:
 ::
 
     */5 * 20-21 12 * flights-notifier manchester AB1234 -e recipient1@gmail.com,recipient2@gmail.com -c ~/flights-notifier.cfg
+
+Trains Notifier
+---------------
+
+There is also a trains notifier script which notifies you status of your
+trains (in the UK only).  Most useful to commuters.
+
+To check the status of the train going from Leeds to York at 07:50 during
+weekdays, in crontab:
+
+::
+
+    */5 7 * * mon-fri trains-notifier leeds york 07:50 -e recipient@gmail.com -c ~/flights-notifier.cfg
