@@ -48,6 +48,7 @@ def main():
             old_status = open(os.path.join(
                 tempdir, flight_number)).read()
 
+    notified = True
     if (options.email and
             config and config.has_section('smtp') and
             status != old_status):
@@ -64,6 +65,7 @@ def main():
                 config.get('smtp', 'email'),
                 options.email,
                 subject, message)
+        notified = True
 
-        if tempdir:
-            open(os.path.join(tempdir, flight_number), 'w').write(status)
+    if notified and tempdir:
+        open(os.path.join(tempdir, flight_number), 'w').write(status)
