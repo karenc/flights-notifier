@@ -25,5 +25,5 @@ def notify(server, port, login, password, sender_name, sender_email,
                 'From: %s <%s>\n'
                 'To: %s\n'
                 'Subject: %s\n\n%s' % (
-                    sender_name, sender_email, subject, message))
+                    sender_name, sender_email, email, subject, message))
     server.close()
